@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM tensorflow/tensorflow:1.5.0
+FROM kubespheredev/tensorflow:v1.15-orion-client-2.5.1-py3.6-cuda10.1
 
 ADD . /var/tf_dist_mnist
 ENTRYPOINT ["python", "/var/tf_dist_mnist/dist_mnist.py"]

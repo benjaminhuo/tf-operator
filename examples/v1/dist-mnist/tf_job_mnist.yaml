@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
             - name: tensorflow
-              image: kubeflow/tf-dist-mnist-test:1.0
+              image: kubespheredev/tf-dist-mnist-test:1.0
     Worker:
       replicas: 4
       restartPolicy: Never
@@ -19,4 +19,30 @@ spec:
         spec:
           containers:
             - name: tensorflow
-              image: kubeflow/tf-dist-mnist-test:1.0
+              imagePullPolicy: IfNotPresent
+              image: kubespheredev/tf-dist-mnist-test:1.0
+              resources:
+                limits:
+                  virtaitech.com/gpu: "1"
+              env:
+                - name: ORION_GMEM
+                  value: '5000'
+                - name: ORION_RATIO
+                  value: '50'
+                - name: ORION_VGPU
+                  value: '1'
+                - name: ORION_RESERVED
+                  value: '0'
+                - name: ORION_CROSS_NODE
+                  value: '0'
+                - name: ORION_GROUP_ID
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.uid
+          schedulerName: orion-scheduler
+          dnsPolicy: ClusterFirst
+          hostIPC: true
+          hostNetwork: true
+          restartPolicy: Never
+          serviceAccount: default

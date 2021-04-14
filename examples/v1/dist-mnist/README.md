@@ -4,11 +4,11 @@ This folder containers Dockerfile and distributed mnist model for e2e test.
 
 **Build Image**
 
-The default image name and tag is `kubeflow/tf-dist-mnist-test:1.0`.
+The default image name and tag is `kubespheredev/tf-dist-mnist-test:1.0`.
 
 To build this image on x86_64:
 ```shell
-docker build -f Dockerfile -t kubeflow/tf-dist-mnist-test:1.0 ./
+docker build -f Dockerfile -t kubespheredev/tf-dist-mnist-test:1.0 ./
 ```
 To build this image on ppc64le:
 ```shell
